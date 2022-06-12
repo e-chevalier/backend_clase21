@@ -6,6 +6,8 @@ import { generateProduct } from './generador/productos.js'
 const request = supertest('http://localhost:8080')
 const expect = chai.expect
 
+let prodIDAdd = 0
+
 
 describe('test api rest full', () => {
 
@@ -27,12 +29,32 @@ describe('test api rest full', () => {
 
             console.log(product)
 
-            // let response = await request.post('/api/productos').send(product)
+            let response = await request.post('/api/productos').send(product)
 
-            // expect(response.status).to.eql(200)
+            expect(response.status).to.eql(200)
 
-            // const prod = response.body
-            // console.log(prod)
+            const prod = response.body
+
+            prodIDAdd = response.body.id
+            //{ status: 'ok', id: 34 }
+
+            console.log(prodIDAdd)
+
+        })
+    })
+
+    describe('DELETE', () => {
+
+        it('deberia eleminar un producto', async () => {
+
+            let response = await request.delete(`/api/productos/${prodIDAdd}`)
+
+            expect(response.status).to.eql(200)
+
+            const prod = response.body
+            //{ status: 'ok', id: 34 }
+            
+            console.log(prod)
 
         })
     })
