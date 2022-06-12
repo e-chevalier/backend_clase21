@@ -36,12 +36,17 @@
     "prof": "node --prof server.js",
     "test": "node benchmark.js",
     "start0x": "0x server.js",
-    "inspect": "node --inspect server.js"
+    "inspect": "node --inspect server.js",
+    "test-mocha": "mocha ./test/index.test.js",
+    "test-super": "mocha ./test/apirestfull.test.js"
   },
   "type": "module",
   "description": "",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.3"
   },
   "nodemonConfig": {
     "ignore": [
